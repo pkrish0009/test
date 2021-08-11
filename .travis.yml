@@ -6,8 +6,14 @@
    - docker build -t phani/node .
    - docker images phani/node
 
+
  deploy:
     provider: script
-    script: docker push phani/node
+    script: bash docker_push
     on:
        branch: main
+# deploy:
+#    provider: script
+#    script: docker push phani/node
+#    on:
+#       branch: main
