@@ -1,19 +1,15 @@
- sudo: required
- services:
-   - docker
+ sudo: true
+ dist: trusty
 
- script:
-   - docker build -t phani/node .
-   - docker images phani/node
-
-
- deploy:
-    provider: script
-    script: bash docker_push
-    on:
-       branch: main
-# deploy:
-#    provider: script
-#    script: docker push phani/node
-#    on:
-#       branch: main
+ jobs:
+    include:
+       - stage: build docker image
+         script:
+            - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+            - docker build -t phani/node .
+            - docker images
+            - docker tag phani/node $DOCKER_USERNAME/phani/node
+            - docker push $DOCKER_USERNAME/phani/node
+       - stage: test
+         script: docker run --rm $DOCKER_USERNAME/phani/node cat hello.txt
+       - script: docker run --rm $DOCKER_USERNAME/phani/node cat hello.txt
