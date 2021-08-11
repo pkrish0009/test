@@ -10,6 +10,3 @@
             - docker images
             - docker tag testnode $DOCKER_USERNAME/testnode
             - docker push $DOCKER_USERNAME/testnode
-       - stage: test
-         script: docker run --rm $DOCKER_USERNAME/testnode cat hello.txt
-       - script: docker run --rm $DOCKER_USERNAME/testnode cat hello.txt
