@@ -6,10 +6,10 @@
        - stage: build docker image
          script:
             - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-            - docker build -t phani/node .
+            - docker build -t testnode .
             - docker images
-            - docker tag phani/node $DOCKER_USERNAME/phani/node
-            - docker push $DOCKER_USERNAME/phani/node
+            - docker tag phani/node $DOCKER_USERNAME/testnode
+            - docker push $DOCKER_USERNAME/testnode
        - stage: test
-         script: docker run --rm $DOCKER_USERNAME/phani/node cat hello.txt
-       - script: docker run --rm $DOCKER_USERNAME/phani/node cat hello.txt
+         script: docker run --rm $DOCKER_USERNAME/testnode cat hello.txt
+       - script: docker run --rm $DOCKER_USERNAME/testnode cat hello.txt
