@@ -8,7 +8,7 @@
             - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
             - docker build -t testnode .
             - docker images
-            - docker tag phani/node $DOCKER_USERNAME/testnode
+            - docker tag testnode $DOCKER_USERNAME/testnode
             - docker push $DOCKER_USERNAME/testnode
        - stage: test
          script: docker run --rm $DOCKER_USERNAME/testnode cat hello.txt
