@@ -6,9 +6,6 @@
    - docker build -t phani/node .
    - docker images phani/node
 
- before_deploy:
-    - docker login -u pkrishnadocker -p Phani1!@#
-
  deploy:
     provider: script
     script: docker push phani/node
